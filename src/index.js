@@ -19,6 +19,12 @@ const app = express();
 const port = 3000;
 const route = require("./router");
 
+// import mongodb 
+const db= require('./congig/db')
+//connect db 
+db.connect()
+
+
 app.use(morgan("combined"));
 
 
