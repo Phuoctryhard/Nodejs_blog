@@ -19,14 +19,12 @@ const app = express();
 const port = 3000;
 const route = require("./router");
 
-// import mongodb 
-const db= require('./congig/db')
-//connect db 
-db.connect()
-
+// import mongodb
+const db = require("./congig/db");
+//connect db
+db.connect();
 
 app.use(morgan("combined"));
-
 
 // middeware xử lì form submit lên
 app.use(
@@ -43,13 +41,24 @@ app.use(express.json());
 const hbs = create({});
 // Register `hbs.engine` with the Express app.
 // định nghãi handlebars
-app.engine(".hbs", engine({ extname: ".hbs" }));
+app.engine(
+  ".hbs",
+  engine({
+    extname: ".hbs",
+    helpers: {
+      sum: (a, b) => a + b,
+    },
+  })
+);
 app.set("view engine", ".hbs");
 // chú ý views này nha
-app.set("views", path.join(__dirname, 'resource', 'view'));
+app.set("views", path.join(__dirname, "resource", "view"));
 
 // console.log("path " + path.join(__dirname, "resource/views"));
 
+//override method
+const methodOverride = require("method-override");
+app.use(methodOverride("_method"));
 // định nghĩa tuyến đường init
 
 route(app);

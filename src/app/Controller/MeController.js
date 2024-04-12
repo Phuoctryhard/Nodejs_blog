@@ -8,9 +8,16 @@ const {
 class MeController {
   //[Get]/me/stored/Courses
   storedCourses(req, res) {
-    res.render("mee/me");
+    // 
+    Course.find({})
+      .then(data=>{
+        res.render("mee/stored-courses",{
+          courses : mutipleMogooseToObject(data)
+        })
+      })
+   
   }
- 
+  
 }
 
 module.exports = new MeController();
