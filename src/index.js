@@ -46,7 +46,7 @@ const hbs = create({});
 app.engine(".hbs", engine({ extname: ".hbs" }));
 app.set("view engine", ".hbs");
 // chú ý views này nha
-app.set("views", path.join(__dirname, "resource//view"));
+app.set("views", path.join(__dirname, 'resource', 'view'));
 
 // console.log("path " + path.join(__dirname, "resource/views"));
 

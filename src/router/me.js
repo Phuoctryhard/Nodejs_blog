@@ -3,11 +3,11 @@ const  express = require("express");
 const  router = express.Router();
 // đối tượng đc khởi tạo từ class 
 
-const newController = require('../app/Controller/NewsController')
+const meController = require('../app/Controller/MeController')
 
 
-router.get('/:slug', newController.show)
-router.get('/', newController.index)
+
+router.get('/stored/courses', meController.storedCourses)
 
 
 module.exports = router

@@ -1,1 +1,23 @@
-<h1> Anh yeu jem </h1>
+<div class="mt-4">
+  <div class="row">
+    {{#each data}}
+      <div class="col-sm-6 col-lg-4 mb-3">
+        <div class="card" style="width: 18rem;">
+          <a href="courses/{{this.slug}}" class="">
+            <img
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRadDlQU2JAgnWtWITD4JYn6Gudy8b0LIhL-tohNNsvWw&s"
+              class="card-img-top"
+              alt="..."
+            />
+          </a>
+
+          <div class="card-body">
+            <h5 class="card-title">{{this.name}}</h5>
+            <p class="card-text">{{this.desciption}}</p>
+            <a href="courses/{{this.slug}}" class="btn btn-primary">Mua khóa học</a>
+          </div>
+        </div>
+      </div>
+    {{/each}}
+  </div>
+</div>
