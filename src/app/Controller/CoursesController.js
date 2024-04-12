@@ -17,7 +17,7 @@ class CoursesController {
     const formdata = req.body;
     formdata.image = `https://www.youtube.com/embed/${req.body.image}`;
     console.log(formdata);
-    res.json(formdata);
+
     // lưu vào database
     const course = new Course(formdata);
     course
@@ -66,6 +66,12 @@ class CoursesController {
       .catch(next);
   }
   // res.json(req.body)
+  destroy(req, res, next) {
+    Course.deleteOne({ _id: req.params._id })
+      .then(() => {
+        res.redirect("back");
+      })
+      .catch(next);
+  }
 }
-
 module.exports = new CoursesController();

@@ -17,16 +17,82 @@
           <td>{{this.name}}</td>
           <td>{{this.level}}</td>
           <td>{{this.createdAt}}</td>
-
-          
-
           <td>
-            {{!-- sửa thì nên dùng id  --}}
+            {{! sửa thì nên dùng id  }}
             <a href="/courses/{{this._id}}/edit">Sửa </a>
-            <a href="">Xóa </a>
+            <button
+              href=""
+              class="btn btn-primary"
+              data-toggle="modal"
+              data-target="#delete-courses-modal"
+              data-id="{{this._id}}"
+            >Xóa </button>
+            <!-- Modal -->
+            <div
+              class="modal fade"
+              id="delete-courses-modal"
+              tabindex="-1"
+              aria-labelledby="exampleModalLabel"
+              aria-hidden="true"
+            >
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Xóa khóa học</h5>
+                    <button
+                      type="button"
+                      class="close"
+                      data-dismiss="modal"
+                      aria-label="Close"
+                    >
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    Bạn chắc chắn muốn xóa khóa học
+                  </div>
+                  <div class="modal-footer">
+                    <button
+                      type="button"
+                      class="btn btn-secondary"
+                      data-dismiss="modal"
+                    >Close</button>
+                    <button
+                      type="button"
+                      class="btn btn-danger"
+                      id="delete-course"
+                    >Xóa </button>
+                  </div>
+                </div>
+              </div>
+            </div>
           </td>
         </tr>
       {{/each}}
     </tbody>
   </table>
+  {{! làm 1 cái form ẩn  }}
+  <form method="POST" name ='delete-form'>
+   
+  </form>
 </div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+
+  $(document).ready(function() { 
+  var id
+  var deleteForm = document.forms["delete-form"]
+  $('#delete-courses-modal').on('show.bs.modal', function(event) {
+     var button = $(event.relatedTarget);
+      id = button.data('id'); console.log(id); }); // lấy ra
+        var buttondelete = document.getElementById('delete-course');
+        buttondelete.onclick = function(){
+            
+             alert(id)
+             // setAtribute 
+             deleteForm.action = "/courses/" + id +'?_method=DELETE'
+             deleteForm.submit()
+              } })
+
+</script>
